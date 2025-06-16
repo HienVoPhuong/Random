@@ -58,7 +58,7 @@ st.markdown("""
     .stButton>button:disabled {
         background-color: #ff6f61 !important;
         color:#ff6f61  !important;
-        opacity: 0.5;
+        
         cursor: not-allowed;
     }
 
