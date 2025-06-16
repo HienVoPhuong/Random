@@ -39,20 +39,23 @@ st.markdown("""
     }
 
     .stButton>button {
-        background-color: #3498db !important;
-        color: #3498db  !important;
-        font-weight: 600;
-        font-size: 18px;
-        padding: 0.75em 2em;
-        border-radius: 10px;
-        margin-top: 20px;
+        background-color: #ff6f61 !important;
+        color: white !important;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 0.75em 2.5em;
+        border-radius: 50px;
         border: none;
-        transition: background-color 0.3s ease, transform 0.1s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
     }
 
     .stButton>button:hover:enabled {
-        background-color: #2d80b3 !important;
-        transform: scale(1.02);
+        background-color: #e85a4f !important;
+        transform: scale(1.05);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
     }
 
     .stButton>button:disabled {
