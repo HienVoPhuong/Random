@@ -41,27 +41,24 @@ st.markdown("""
     .stButton>button {
         background-color: #ff6f61 !important;
         color: white !important;
-        font-weight: bold;
-        font-size: 20px;
-        padding: 0.75em 2.5em;
-        border-radius: 50px;
+        font-weight: 600;
+        font-size: 18px;
+        padding: 0.75em 2em;
+        border-radius: 25px;
+        margin-top: 20px;
         border: none;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        margin-top: 30px;
-        margin-bottom: 20px;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.1s ease;
     }
 
     .stButton>button:hover:enabled {
-        background-color: #e85a4f !important;
-        transform: scale(1.05);
-        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        background-color: #e65c50 !important;
+        transform: scale(1.02);
     }
 
     .stButton>button:disabled {
-        background-color: #d6eaf8 !important;
-        color: #2c3e50 !important;
-        opacity: 0.6;
+        background-color: #ff6f61 !important;
+        color: white !important;
+        opacity: 0.5;
         cursor: not-allowed;
     }
 
