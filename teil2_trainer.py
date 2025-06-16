@@ -8,36 +8,58 @@ st.set_page_config(page_title="A1 Teil 2 – Stichwort Trainer", page_icon="🗣
 st.markdown("""
 <style>
     html, body, [class*="st-"] {
-        font-family: 'Arial', sans-serif;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f8f9fa;
         text-align: center;
     }
     .thema {
-        font-size: 22px;
-        font-weight: bold;
-        color: #1f77b4;
-        margin-top: 20px;
+        font-size: 24px;
+        font-weight: 600;
+        color: #2c3e50;
+        background-color: #d6eaf8;
+        padding: 12px;
+        margin: 25px auto 10px auto;
+        border-radius: 10px;
+        width: fit-content;
     }
     .stichwort {
-        font-size: 30px;
-        color: #ff4b4b;
+        font-size: 34px;
         font-weight: bold;
-        margin-bottom: 20px;
+        color: #e74c3c;
+        background-color: #fdecea;
+        padding: 18px 25px;
+        margin: 10px auto 30px auto;
+        border-radius: 10px;
+        width: fit-content;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .stButton>button {
-        background-color: #1f77b4;
+        background-color: #3498db;
         color: white;
-        font-weight: bold;
-        border-radius: 8px;
-        font-size: 16px;
-        padding: 0.6em 1.5em;
+        font-weight: 600;
+        font-size: 18px;
+        padding: 0.75em 2em;
+        border-radius: 10px;
+        margin-top: 20px;
+        border: none;
     }
     .stButton>button:hover {
-        background-color: #135589;
+        background-color: #2d80b3;
+        transition: background-color 0.3s ease;
+    }
+    .info-box {
+        font-size: 16px;
+        margin-top: 20px;
+        background-color: #f0f3f4;
+        padding: 10px 20px;
+        border-left: 5px solid #5dade2;
+        display: inline-block;
+        border-radius: 6px;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- DATA: Thema + Stichwörter ----------------
+# ---------------- DATA ----------------
 themen_dict = {
     "kennen lernen": ["Wie", "kommen", "wohnen", "Welche", "in Deutschland", "aus Genf"],
     "Sprachen lernen": ["Muttersprache", "sprechen", "Deutsch", "lernen", "am Wochenende", "Welche"],
@@ -77,12 +99,12 @@ themen_dict = {
 if "used" not in st.session_state:
     st.session_state.used = set()
 
-# ---------------- FLATTEN ALL (Thema, Stichwort) ----------------
+# ---------------- FLATTEN ALL PAIRS ----------------
 all_pairs = [(thema, wort) for thema, wlist in themen_dict.items() for wort in wlist]
 unused = [pair for pair in all_pairs if f"{pair[0]}|{pair[1]}" not in st.session_state.used]
 
 # ---------------- UI ----------------
-st.title("🗣️ A1 Teil 2 – Random Stichwort Trainer ")
+st.title("🗣️ A1 Teil 2 – Random Stichwort Trainer")
 
 if len(unused) == 0:
     st.success("🎉 Bạn đã luyện xong TẤT CẢ Stichwörter!")
@@ -96,4 +118,4 @@ else:
         st.markdown(f'<div class="thema">📝 Thema: {thema}</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="stichwort">🔑 Stichwort: {wort}</div>', unsafe_allow_html=True)
 
-    st.info(f"✅ Đã luyện: {len(st.session_state.used)} / {len(all_pairs)} Stichwörter")
+    st.markdown(f'<div class="info-box">✅ Đã luyện: {len(st.session_state.used)} / {len(all_pairs)} Stichwörter</div>', unsafe_allow_html=True)
