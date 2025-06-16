@@ -10,47 +10,42 @@ st.markdown("""
     html, body, [class*="st-"] {
         font-family: 'Segoe UI', sans-serif;
         background-color: #f8f9fa;
-    }
-
-    .card {
-        background-color: #ffffff;
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px auto;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        animation: fadeIn 0.6s ease;
         text-align: center;
     }
 
-    .thema-title {
-        font-size: 22px;
+    .thema {
+        font-size: 24px;
         font-weight: 600;
         color: #2c3e50;
-        margin-bottom: 8px;
+        background-color: #d6eaf8;
+        padding: 12px 25px;
+        margin: 25px auto 10px auto;
+        border-radius: 10px;
+        width: fit-content;
+        animation: fadeIn 0.8s ease;
     }
 
-    .stichwort-main {
+    .stichwort {
         font-size: 34px;
         font-weight: bold;
         color: #e74c3c;
-        margin-top: 10px;
-    }
-
-    .stichwort-last {
-        font-size: 20px;
-        font-weight: 500;
-        color: #7f8c8d;
-        margin-top: 5px;
+        background-color: #fdecea;
+        padding: 18px 30px;
+        margin: 10px auto 30px auto;
+        border-radius: 10px;
+        width: fit-content;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.8s ease;
     }
 
     .stButton>button {
         background-color: #3498db !important;
-        color: white !important;
+        color: #3498db  !important;
         font-weight: 600;
         font-size: 18px;
         padding: 0.75em 2em;
         border-radius: 10px;
-        margin: 20px 0;
+        margin-top: 20px;
         border: none;
         transition: background-color 0.3s ease, transform 0.1s ease;
     }
@@ -75,6 +70,7 @@ st.markdown("""
         border-left: 5px solid #5dade2;
         display: inline-block;
         border-radius: 6px;
+        animation: fadeIn 0.8s ease;
     }
 
     @keyframes fadeIn {
@@ -120,57 +116,27 @@ themen_dict = {
     "Reisen": ["Wohin", "fliegen", "allein oder mit Familie", "im Juli oder im August", "ans Meer", "nächstes Jahr"]
 }
 
-# ---------------- STATE INIT ----------------
+# ---------------- STATE ----------------
 if "used" not in st.session_state:
     st.session_state.used = set()
-if "last_pair" not in st.session_state:
-    st.session_state.last_pair = None
 
-# ---------------- FLATTEN PAIRS ----------------
+# ---------------- FLATTEN ALL PAIRS ----------------
 all_pairs = [(thema, wort) for thema, wlist in themen_dict.items() for wort in wlist]
 unused = [pair for pair in all_pairs if f"{pair[0]}|{pair[1]}" not in st.session_state.used]
 
 # ---------------- UI ----------------
-st.title("🗣️ A1 Teil 2 – Stichwort Trainer")
+st.title("🗣️ A1 Teil 2 – Random Stichwort Trainer")
 
 if len(unused) == 0:
     st.success("🎉 Bạn đã luyện xong TẤT CẢ Stichwörter!")
     if st.button("🔁 Reset"):
         st.session_state.used = set()
-        st.session_state.last_pair = None
         st.rerun()
 else:
     if st.button("🎯 Random Stichwort mới"):
         thema, wort = random.choice(unused)
         st.session_state.used.add(f"{thema}|{wort}")
-        st.session_state.last_pair = (thema, wort)
+        st.markdown(f'<div class="thema">📝 Thema: {thema}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="stichwort">🔑 Stichwort: {wort}</div>', unsafe_allow_html=True)
 
-# ---------------- DISPLAY ----------------
-if st.session_state.last_pair:
-    thema, wort = st.session_state.last_pair
-    st.markdown(f"""
-        <div class="card">
-            <div class="thema-title">📝 Thema: <strong>{thema}</strong></div>
-            <div class="stichwort-main">🔑 Stichwort: {wort}</div>
-        </div>
-    """, unsafe_allow_html=True)
-
-    if len(st.session_state.used) > 1:
-        # Tìm Stichwort trước đó (trừ cái hiện tại)
-        last_list = list(st.session_state.used)[:-1]
-        if last_list:
-            last_str = last_list[-1]
-            last_thema, last_wort = last_str.split("|")
-            st.markdown(f"""
-                <div class="card">
-                    <div class="thema-title">🕑 Stichwort trước đó</div>
-                    <div class="stichwort-last">{last_thema} – {last_wort}</div>
-                </div>
-            """, unsafe_allow_html=True)
-
-# ---------------- INFO BOX ----------------
-st.markdown(f"""
-    <div class="info-box">
-        ✅ Đã luyện: {len(st.session_state.used)} / {len(all_pairs)} Stichwörter
-    </div>
-""", unsafe_allow_html=True)
+    st.markdown(f'<div class="info-box">✅ Đã luyện: {len(st.session_state.used)} / {len(all_pairs)} Stichwörter</div>', unsafe_allow_html=True)
