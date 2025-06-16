@@ -82,7 +82,7 @@ all_pairs = [(thema, wort) for thema, wlist in themen_dict.items() for wort in w
 unused = [pair for pair in all_pairs if f"{pair[0]}|{pair[1]}" not in st.session_state.used]
 
 # ---------------- UI ----------------
-st.title("🗣️ A1 Teil 2 – Random Stichwort Trainer (không lặp)")
+st.title("🗣️ A1 Teil 2 – Random Stichwort Trainer ")
 
 if len(unused) == 0:
     st.success("🎉 Bạn đã luyện xong TẤT CẢ Stichwörter!")
