@@ -12,41 +12,56 @@ st.markdown("""
         background-color: #f8f9fa;
         text-align: center;
     }
+
     .thema {
         font-size: 24px;
         font-weight: 600;
         color: #2c3e50;
         background-color: #d6eaf8;
-        padding: 12px;
+        padding: 12px 25px;
         margin: 25px auto 10px auto;
         border-radius: 10px;
         width: fit-content;
+        animation: fadeIn 0.8s ease;
     }
+
     .stichwort {
         font-size: 34px;
         font-weight: bold;
         color: #e74c3c;
         background-color: #fdecea;
-        padding: 18px 25px;
+        padding: 18px 30px;
         margin: 10px auto 30px auto;
         border-radius: 10px;
         width: fit-content;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.8s ease;
     }
+
     .stButton>button {
-        background-color: #3498db;
-        color: white;
+        background-color: #3498db !important;
+        color: white !important;
         font-weight: 600;
         font-size: 18px;
         padding: 0.75em 2em;
         border-radius: 10px;
         margin-top: 20px;
         border: none;
+        transition: background-color 0.3s ease, transform 0.1s ease;
     }
-    .stButton>button:hover {
-        background-color: #2d80b3;
-        transition: background-color 0.3s ease;
+
+    .stButton>button:hover:enabled {
+        background-color: #2d80b3 !important;
+        transform: scale(1.02);
     }
+
+    .stButton>button:disabled {
+        background-color: #d6eaf8 !important;
+        color: #2c3e50 !important;
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
     .info-box {
         font-size: 16px;
         margin-top: 20px;
@@ -55,6 +70,12 @@ st.markdown("""
         border-left: 5px solid #5dade2;
         display: inline-block;
         border-radius: 6px;
+        animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(10px);}
+        to {opacity: 1; transform: translateY(0);}
     }
 </style>
 """, unsafe_allow_html=True)
