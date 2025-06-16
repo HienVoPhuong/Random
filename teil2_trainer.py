@@ -88,7 +88,7 @@ if len(unused) == 0:
     st.success("🎉 Bạn đã luyện xong TẤT CẢ Stichwörter!")
     if st.button("🔁 Reset"):
         st.session_state.used = set()
-        st.experimental_rerun()
+        st.rerun()
 else:
     if st.button("🎯 Random Stichwort mới"):
         thema, wort = random.choice(unused)
