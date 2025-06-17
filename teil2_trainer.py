@@ -57,7 +57,7 @@ st.markdown("""
 
     .stButton>button:disabled {
         background-color: #ff6f61 !important;
-        color: #ff6f61 !important;
+        color:#ff6f61  !important;
         opacity: 0.5;
         cursor: not-allowed;
     }
@@ -78,22 +78,6 @@ st.markdown("""
         to {opacity: 1; transform: translateY(0);}
     }
 </style>
-""", unsafe_allow_html=True)
-
-# ---------------- AUDIO ELEMENT ----------------
-st.markdown("""
-<audio id="clickSound" style="display:none">
-    <source src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg" type="audio/ogg">
-</audio>
-<script>
-    function playSound() {
-        var audio = document.getElementById("clickSound");
-        if (audio) {
-            audio.currentTime = 0;
-            audio.play();
-        }
-    }
-</script>
 """, unsafe_allow_html=True)
 
 # ---------------- DATA ----------------
@@ -152,11 +136,10 @@ else:
     if st.button("🎯 Random Stichwort mới"):
         thema, wort = random.choice(unused)
         st.session_state.used.add(f"{thema}|{wort}")
-
+        
+        # Hiển thị Thema & Stichwort
         st.markdown(f'<div class="thema">📝 Thema: {thema}</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="stichwort">🔑 Stichwort: {wort}</div>', unsafe_allow_html=True)
 
-        # Kích hoạt âm thanh bằng JS
-        st.components.v1.html("<script>playSound();</script>", height=0)
-
+    # Thông tin luyện tập
     st.markdown(f'<div class="info-box">✅ Đã luyện: {len(st.session_state.used)} / {len(all_pairs)} Stichwörter</div>', unsafe_allow_html=True)
