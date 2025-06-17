@@ -136,7 +136,17 @@ else:
     if st.button("🎯 Random Stichwort mới"):
         thema, wort = random.choice(unused)
         st.session_state.used.add(f"{thema}|{wort}")
+        
+        # Hiển thị Thema & Stichwort
         st.markdown(f'<div class="thema">📝 Thema: {thema}</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="stichwort">🔑 Stichwort: {wort}</div>', unsafe_allow_html=True)
 
+        # Âm thanh khi random
+        st.markdown("""
+        <audio id="click-sound" autoplay>
+            <source src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg" type="audio/ogg">
+        </audio>
+        """, unsafe_allow_html=True)
+
+    # Thông tin luyện tập
     st.markdown(f'<div class="info-box">✅ Đã luyện: {len(st.session_state.used)} / {len(all_pairs)} Stichwörter</div>', unsafe_allow_html=True)
